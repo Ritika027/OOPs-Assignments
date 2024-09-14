@@ -1,0 +1,141 @@
+package assignment3;
+import java.util.Scanner;
+
+class Employee{
+	String Emp_name, Email_id, Mob_no;
+	int Emp_id;
+	
+	Scanner sc = new Scanner(System.in);
+
+	
+	void GetEmployeeDetails() {
+		System.out.print("Enter Name of Employee : ");
+		Emp_name = sc.nextLine(); 
+		
+		System.out.print("Enter Employee-ID : ");
+		Emp_id = sc.nextInt();
+		
+		System.out.print("Enter Email-id of Employee : ");
+		Email_id = sc.nextLine();
+		
+		System.out.print("Enter Mobile number of Employee : ");
+		Mob_no = sc.nextLine();
+	}
+	void Pay_slip(float BP) {
+		float DA, HRA, PF, CF, Gross_salary, Net_salary;
+		
+		DA = 0.10f * BP;
+		HRA = 0.15f * BP;
+		PF = 0.05f * BP;
+		CF = 0.04f * BP;
+		Gross_salary = BP + DA + HRA;
+		Net_salary = Gross_salary - PF - CF;
+		
+		System.out.println("\n*Employee Details*");
+		System.out.println("Name of Employee : " + Emp_name);
+		System.out.println("Employee ID : " + Emp_id);
+		System.out.println("Email ID : " + Email_id);
+		System.out.println("Mobile Number : " + Mob_no);
+		System.out.println("\n*Pay Slip*");
+		System.out.println("Basic Pay : " + BP);
+		System.out.println("Gross Salary : " + Gross_salary);
+		System.out.println("Net Salary : " + Net_salary);
+	}
+} 
+
+
+class Programmer extends Employee {
+	float BP;
+	Scanner sc = new Scanner(System.in);
+	float Basic_pay() {
+		System.out.print("Enter your Basic Pay : ");
+		BP = sc.nextFloat();
+		return BP;
+	}
+}
+
+
+class TeamLead extends Employee {
+	float BP;
+	Scanner sc = new Scanner(System.in);
+	float Basic_pay() {
+		System.out.print("Enter your Basic Pay : ");
+		BP = sc.nextFloat();
+		return BP;
+	}
+}
+
+
+class AssistantProjectManager extends Employee {
+	float BP;
+	Scanner sc = new Scanner(System.in);
+	float Basic_pay() {
+		System.out.print("Enter your Basic Pay : ");
+		BP = sc.nextFloat();
+		return BP;
+	}
+}
+
+
+class ProjectManager extends Employee {
+	float BP;
+	Scanner sc = new Scanner(System.in);
+	float Basic_pay() {
+		System.out.print("Enter your Basic Pay : ");
+		BP = sc.nextFloat();
+		return BP;
+	}
+}
+
+
+public class Assignment2 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int choice;
+		
+		do {
+			System.out.println("\n ********** CHOOSE YOUR POSITION **********");
+			System.out.println("1. Programmer. \n2. Team Lead. \n3. Assistant Project Manager. \n4. Project Manager. \n5. Exit.");
+			System.out.print("Enter Your Choice : ");
+			choice = sc.nextInt();
+			
+			switch(choice) {
+			case 1:
+				Programmer pgrm = new Programmer();
+				pgrm.GetEmployeeDetails();
+				float BP = pgrm.Basic_pay();
+				pgrm.Pay_slip(BP);
+				break;
+				
+			case 2:
+				TeamLead tl = new TeamLead();
+				tl.GetEmployeeDetails();
+				BP = tl.Basic_pay();
+				tl.Pay_slip(BP);
+				break;
+				
+			case 3:
+				AssistantProjectManager apm = new AssistantProjectManager();
+				apm.GetEmployeeDetails();
+				BP = apm.Basic_pay();
+				apm.Pay_slip(BP);
+				break;
+				
+			case 4:
+				ProjectManager pm = new ProjectManager();
+				pm.GetEmployeeDetails();
+				BP = pm.Basic_pay();
+				pm.Pay_slip(BP);
+				break;
+				
+			case 5:
+				System.out.println("Successfully Executed!");
+				break;
+				 
+			default :
+				System.out.println("Invalid Input : Please try Again!!");
+			}
+		} while (choice != 5);
+	}
+}
