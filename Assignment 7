@@ -1,0 +1,154 @@
+package Assignment7;
+import java.util.*;
+public class Assignment7 {
+    public ArrayList<Integer> intList = new ArrayList<>();
+    public ArrayList<String> strList = new ArrayList<>();
+
+    public void addInteger(int input) {
+        intList.add(input);
+    }
+
+    public void addString(String input) {
+        strList.add(input);
+    }
+
+    public void printOdd() {
+        ArrayList<Integer> oddList = new ArrayList<>();
+        for (int num : intList) {
+            if (num % 2 != 0) {
+                oddList.add(num);
+            }
+        }
+        System.out.println("Count of Odd Numbers: " + oddList.size());
+        System.out.println("Odd Numbers: " + oddList);
+    }
+
+    public void printEven() {
+        ArrayList<Integer> evenList = new ArrayList<>();
+        for (int num : intList) {
+            if (num % 2 == 0) {
+                evenList.add(num);
+            }
+        }
+        System.out.println("Count of Even Numbers: " + evenList.size());
+        System.out.println("Even Numbers: " + evenList);
+    }
+
+    public void printPrime() {
+        ArrayList<Integer> primeList = new ArrayList<>();
+        for (int num : intList) {
+            if (isPrime(num)) {
+                primeList.add(num);
+            }
+        }
+        System.out.println("Count of Prime Numbers: " + primeList.size());
+        System.out.println("Prime Numbers: " + primeList);
+    }
+
+    private boolean isPrime(int n) {
+        if (n < 2) return false;
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) return false;
+        }
+        return true;
+    }
+
+    public void printPalindromes() {
+        ArrayList<Integer> intPalindromes = new ArrayList<>();
+        ArrayList<String> strPalindromes = new ArrayList<>();
+        
+        for (int num : intList) {
+            if (isPalindrome(String.valueOf(num))) {
+                intPalindromes.add(num);
+            }
+        }
+        for (String str : strList) {
+            if (isPalindrome(str)) {
+                strPalindromes.add(str);
+            }
+        }
+        System.out.println("Count of Integer Palindromes: " + intPalindromes.size());
+        System.out.println("Integer Palindromes: " + intPalindromes);
+        System.out.println("Count of String Palindromes: " + strPalindromes.size());
+        System.out.println("String Palindromes: " + strPalindromes);
+    }
+
+    private boolean isPalindrome(String s) {
+        int l = 0, r = s.length() - 1;
+        while (l < r) {
+            if (s.charAt(l) != s.charAt(r)) {
+                return false;
+            }
+            l++;
+            r--;
+        }
+        return true;
+    }
+
+    public void printList() {
+        System.out.println("Complete Integer List: " + intList);
+        System.out.println("Complete String List: " + strList);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Assignment7 obj = new Assignment7();
+        
+        while (true) {
+            System.out.println("0. Add String Input");
+            System.out.println("1. Add Integer Input");
+            System.out.println("2. Print Complete List");
+            System.out.println("3. Print Odd Numbers");
+            System.out.println("4. Print Even Numbers");
+            System.out.println("5. Print Prime Numbers");
+            System.out.println("6. Print Palindromes");
+            System.out.println("7. Exit");
+            System.out.print("Enter your choice: ");
+            
+            int choice = sc.nextInt();
+
+            switch (choice) {
+                case 0:
+                    System.out.print("Enter input: ");
+                    String strInput = sc.next();
+                    obj.addString(strInput);
+                    break;
+                
+                case 1:
+                    System.out.print("Enter input: ");
+                    int intInput = sc.nextInt();
+                    obj.addInteger(intInput);
+                    break;
+
+                case 2:
+                    obj.printList();
+                    break;
+
+                case 3:
+                    obj.printOdd();
+                    break;
+
+                case 4:
+                    obj.printEven();
+                    break;
+
+                case 5:
+                    obj.printPrime();
+                    break;
+
+                case 6:
+                    obj.printPalindromes();
+                    break;
+
+                case 7:
+                    System.out.println("Exiting the program!");
+                    sc.close();
+                    System.exit(0);
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+}
